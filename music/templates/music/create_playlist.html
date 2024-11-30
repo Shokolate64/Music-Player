@@ -1,0 +1,7 @@
+<h1>Create Playlist</h1>
+<form method="POST" id="create-playlist-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+</form>
+<a href="#" onclick="navigateTo(event, '/playlists/')" id="playlist_link">Back to Playlists</a>

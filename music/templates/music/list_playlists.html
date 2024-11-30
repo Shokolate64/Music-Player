@@ -1,0 +1,24 @@
+<h1>Playlists</h1>
+<a href="#" onclick="navigateTo(event, '/playlists/create/')" id="playlist_link">Create New Playlist</a>
+
+<ul  id="playlists-list">
+    {% for playlist in playlists %}
+        <li>
+            <a href="#" onclick="navigateTo(event, '/playlists/{{ playlist.id }}/')" id="playlist_link">{{ playlist.name }}</a>
+            
+            <div class="playlist-icon-container">
+                <button class="edit-playlist-btn" onclick="openEditPlaylistModal({{ playlist.id }})"></button>
+                <button class="delete-playlist-btn" onclick="deletePlaylist({{ playlist.id }})"></button>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- Modal para editar playlist -->
+<div id="edit-playlist-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditPlaylistModal()">&times;</span>
+        <h2>Edit Playlist</h2>
+        <ul id="edit-playlist-songs"></ul>
+    </div>
+</div>

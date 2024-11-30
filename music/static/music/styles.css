@@ -1,0 +1,800 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #222;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+/* Estilo base para la barra de navegación */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: #222;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+header nav a:hover,
+header nav .active {
+    background-color: #555;
+    color: #ffcc00;
+}
+
+/* Main */
+main {
+    display: flex;
+    padding-bottom: 80px;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+/* Quitar subrayado y mantener color original */
+a {
+    text-decoration: none; /* Sin subrayado */
+    color: inherit; /* Mantiene el color actual */
+}
+
+/* Quitar el estilo al hacer hover */
+a:hover {
+    text-decoration: none; /* Sin subrayado al pasar el mouse */
+    color: inherit; /* Sin cambio de color */
+}
+
+/* Quitar estilos al ser enfocado o seleccionado */
+a:focus, a:active {
+    text-decoration: none; /* Sin subrayado */
+    color: inherit; /* Mantiene el color original */
+    outline: none; /* Quitar el borde de enfoque por defecto */
+}
+
+/* Song List */
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    
+    gap: 15px;
+    justify-content: center;
+}
+
+li {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    max-width: 300px;
+    flex: 1 1 45%; /* Dos canciones por fila en pantallas grandes */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+#favorites-list img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 18px;
+    margin: 0px 0;
+}
+p {
+    font-size: 18px;
+    margin: 0px 0;
+}
+button {
+    background: #379df1;
+    color: rgb(255 255 255);
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+#playlist_link{
+    background: #379df1;
+    color: rgb(255 255 255);
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+    display: flex;
+}
+
+button:hover {
+    transform: scale(1.2); /* Aumenta el tamaño al 120% */
+}
+
+/* Específicamente para botones con íconos */
+.play-btn, 
+.add-to-playlist-btn, 
+.favorite-icon {
+    transition: transform 0.2s ease, background-color 0.3s ease; /* Suavidad en el cambio */
+}
+
+/* Hover específico para los íconos */
+.play-btn:hover,
+.add-to-playlist-btn:hover,
+.favorite-icon:hover {
+    transform: scale(1.2); /* Incrementa tamaño en hover */
+}
+audio {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.edit-playlist-btn {
+    width: 24px;
+    height: 24px;
+    background: url('/static/music/icons/edit.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.delete-playlist-btn {
+    width: 24px;
+    height: 24px;
+    background: url('/static/music/icons/delete.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    display: inline-block;
+}
+.play-btn,
+.add-to-playlist-btn,
+.favorite-icon {
+    min-width: 24px; /* Tamaño mínimo del ancho del ícono */
+    min-height: 20px; /* Tamaño mínimo de la altura del ícono */
+}
+/* Opcional: Ajustar hover para mejor visualización */
+.edit-playlist-btn:hover,
+.delete-playlist-btn:hover {
+    filter: brightness(1.2); /* Efecto de iluminación */
+}
+
+
+/* Botón sin fondo ni borde */
+/* Botón base sin fondo ni bordes adicionales */
+button[onclick^="toggleFavorite"] {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+/* Iconos favoritos */
+.favorite-icon {
+    width: 24px; /* Tamaño del ícono */
+    height: 24px;
+    background-size: cover; /* Asegura que la imagen ocupe todo el botón */
+    display: inline-block;
+}
+
+/* Ícono para "Add to Favorites" */
+.favorite-icon.add {
+    background-image: url('/static/music/icons/add-favorite.png'); /* Ruta al PNG de "Add" */
+}
+
+/* Ícono para "Unfavorite" */
+.favorite-icon.remove {
+    background-image: url('/static/music/icons/unfavorite.png'); /* Ruta al PNG de "Remove" */
+}
+.add-to-playlist-btn {
+    width: 24px;
+    height: 24px;
+    background: url('/static/music/icons/add_to_playlist.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.play-btn {
+    width: 24px; /* Tamaño del botón */
+    height: 24px;
+    background: url('/static/music/icons/play.png') no-repeat center center;
+    background-size: contain; /* Ajusta el tamaño del icono */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar */
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+
+/* Music Player */
+#music-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#player-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#player-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+#player-controls {
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    padding-right: 50px;
+}
+#player-controls img {
+    width: 30px; /* Ajusta el tamaño del ícono */
+    height: 30px;
+    display: block;
+    pointer-events: none; /* Evita que los clics afecten al <img> */
+    transition: transform 0.3s ease; /* Para animaciones al pasar el ratón */
+}
+#player-controls button {
+    width: 100%;
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin bordes */
+    padding: 10px;
+    cursor: pointer;
+    outline: none; /* Elimina el highlight del botón */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease; /* Efecto suave para escala */
+}
+
+#player-controls button img {
+    filter: brightness(1); /* Icono en estado normal */
+    transition: filter 0.3s ease; /* Efecto suave en iluminación */
+}
+.cover-image {
+    width: 100px; /* Tamaño por defecto */
+
+    object-fit: cover; /* Mantiene proporciones */
+    margin-right: 10px; /* Espacio con el texto */
+}
+#player-controls button:active img {
+    filter: brightness(1.5); /* Aumenta la iluminación del icono */
+}
+
+#player-controls button:focus {
+    outline: none; /* Elimina el outline por accesibilidad */
+    box-shadow: none; /* Evita sombras */
+}
+
+#player-controls button:focus-visible {
+    outline: none;
+}
+
+#play-pause-btn img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease;
+}
+
+#play-pause-btn:hover img {
+    transform: scale(1.1); /* Efecto visual al pasar el ratón */
+}
+
+#player-controls button:hover img {
+    transform: scale(1.1); /* Efecto de hover */
+}
+#shuffle-btn img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#shuffle-btn img.active {
+    transform: scale(1.2); /* Efecto visual cuando Shuffle está activado */
+    opacity: 1;
+}
+
+#shuffle-btn img.inactive {
+    opacity: 0.7;
+}
+
+
+/* General styling for sliders */
+#progress-bar {
+    width: 400px; /* Ancho de la barra */
+    height: 4px; /* Línea delgada */
+    appearance: none;
+    background: #ddd; /* Fondo de la barra */
+    border-radius: 5px; /* Bordes redondeados */
+    outline: none; /* Elimina el borde predeterminado */
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+}
+#volume-slider {
+    width: 150px; /* Ancho de la barra */
+    height: 4px; /* Línea delgada */
+    appearance: none;
+    background: #ddd; /* Fondo de la barra */
+    border-radius: 5px; /* Bordes redondeados */
+    outline: none; /* Elimina el borde predeterminado */
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+}
+/* Progreso dinámico */
+#progress-bar::-webkit-slider-runnable-track,
+#volume-slider::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #007bff 0%); /* Progreso azul */
+    height: 4px;
+    border-radius: 5px;
+    position: relative;
+}
+#progress-bar::-moz-range-track,
+#volume-slider::-moz-range-track {
+    background: linear-gradient(to right, #007bff 0%);
+    height: 4px;
+    border-radius: 5px;
+}
+
+#progress-bar::-ms-track,
+#volume-slider::-ms-track {
+    background: linear-gradient(to right, #007bff 0%);
+    height: 4px;
+    border-radius: 5px;
+    border-color: transparent;
+    color: transparent;
+}
+
+/* Thumb centrado */
+#progress-bar::-webkit-slider-thumb,
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    margin-top: -4px; /* Centra el thumb */
+    background-color: #007bff; /* Azul */
+    border-radius: 50%; /* Círculo */
+    cursor: pointer;
+    position: relative;
+    z-index: 1; /* Asegura que esté encima */
+}
+
+#progress-bar::-moz-range-thumb,
+#volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+#progress-bar::-ms-thumb,
+#volume-slider::-ms-thumb {
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover effect para el thumb */
+#progress-bar:hover::-webkit-slider-thumb,
+#volume-slider:hover::-webkit-slider-thumb {
+    background-color: #0056b3; /* Azul más oscuro */
+}
+
+#progress-bar:hover::-moz-range-thumb,
+#volume-slider:hover::-moz-range-thumb {
+    background-color: #0056b3;
+}
+
+#progress-bar:hover::-ms-thumb,
+#volume-slider:hover::-ms-thumb {
+    background-color: #0056b3;
+}
+
+/* Hover effect para la barra */
+#progress-bar:hover,
+#volume-slider:hover {
+    background-color: #cce5ff; /* Azul claro */
+}
+
+
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-content ul li {
+    margin: 10px 0;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 1023px) {
+    
+    #edit-playlist-modal ul{
+        justify-content: flex-start;
+    }
+
+    ul {
+        flex-direction: column; /* Las tarjetas siguen siendo una por fila */
+        gap: 10px; /* Espacio entre tarjetas */
+    }
+
+    li {
+        display: flex; /* Cambiar a disposición horizontal */
+        align-items: center; /* Alinear verticalmente el contenido */
+        flex-direction: row; /* Mantener los elementos en fila */
+        flex: 1 1 100%; /* Ocupa todo el ancho */
+        max-width: 100%;
+        padding: 10px; /* Espacio interno reducido */
+        gap: 10px; /* Espacio entre imagen y contenido */
+    }
+    h3, p {
+        display: block; /* Asegura que cada elemento sea un bloque */
+        text-align: center;
+        font-size: 14px; /* Texto más pequeño */
+        margin: 5px 0; /* Reducir márgenes */
+    }
+
+    img {
+        width: 100px; /* Imagen más pequeña */
+        height: auto; /* Mantener proporción */
+        flex-shrink: 0; /* Evitar que la imagen se redimensione demasiado */
+        border-radius: 5px; /* Bordes redondeados */
+    }
+
+
+    button {
+        font-size: 12px; /* Botones más pequeños */
+        padding: 5px; /* Ajustar padding */
+    }
+
+    li > div {
+        flex-grow: 1; /* El contenido a la derecha ocupa el resto del espacio */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrar texto verticalmente */
+    }
+    header nav a {
+        font-size: 12px;
+    }
+
+    #music-player {
+        flex-direction: column; /* Coloca los elementos en columna */
+        gap: 10px; /* Espacio entre elementos */
+        padding: 15px;
+    }
+
+    #player-info {
+        flex-direction: row; /* Alinea título, artista y progreso */
+        align-items: center;
+        gap: 8px;
+    }
+    #player-controls button img,
+    #volume-icon,
+    .add-to-playlist-btn,
+    .favorite-icon {
+        width: 32px;
+        height: 32px;
+    }
+    #player-info h4,
+    #player-info p {
+        margin: 0;
+        font-size: 14px; /* Ajusta el tamaño del texto */
+        text-align: left; /* Alineación para pantallas pequeñas */
+    }
+    #player-info img {
+        width: 60px; /* Ajusta tamaño del cover */
+        height: 60px;
+    }
+
+    #player-controls {
+        display: flex;
+        justify-content: space-around; /* Espacio entre botones */
+        flex-wrap: wrap; /* Asegura que los botones se ajusten */
+        gap: 10px;
+    }
+    #player-info div {
+        
+        flex-direction: column; /* Títulos y barra en columna */
+        flex: 1; /* Ocupa el espacio restante */
+    }
+    #progress-bar {
+        width: 90%; /* Ocupa casi toda la fila */
+    }
+
+    #volume-slider {
+        width: 90%; /* Ocupa casi toda la fila */
+    }
+
+    #player-controls button {
+        background: none;
+        width: 40px; /* Tamaño compacto */
+        height: 40px;
+        padding: 0;
+        font-size: 12px;
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background-color: #222;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar para pantallas mayores a 1024px */
+@media (min-width: 1024px) {
+    header nav {
+        margin-top: 54px;
+        display: flex;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+    nav {
+        position: fixed; /* Fijar en la parte izquierda */
+        top: 60px; /* Debajo del header */
+        left: 0;
+        height: calc(100% - 120px); /* Altura dinámica: resto entre header y footer */
+        width: 200px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px 10px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+        background-color: #333;
+        z-index: 900; /* Queda detrás del header y footer */
+        overflow-y: auto; /* Para manejar contenido largo */
+    }
+
+    /* Ajustes de los enlaces dentro del sidebar */
+    nav a {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 10px 15px;
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+        background-color: #555;
+    }
+
+    /* Ajustar el contenido principal para que no quede tapado */
+    main {
+        margin-left: 220px; /* Deja espacio para la sidebar */
+         /* Deja espacio para el header */
+        margin-bottom: 80px; /* Deja espacio para el footer */
+        padding: 20px
+    }
+    ul {
+        justify-content: flex-start; /* Tarjetas alineadas a la izquierda */
+    }
+    li {
+        flex: 1 1 calc(33.33% - 30px); /* Hasta 3 columnas */
+        
+    }
+    li .playlist-icon-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+}
+#edit-playlist-songs{
+    flex-direction: column;
+}
+#edit-playlist-songs li {
+    display: flex; /* Asegura el uso de flexbox */
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 10px; /* Espaciado entre el título y el botón */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Espaciado entre tarjetas */
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px; /* Ajusta el ancho máximo */
+     /* Asegura que ocupe todo el ancho disponible */
+}
+
+#edit-playlist-songs li h3 {
+    font-size: 16px;
+    text-align: center; /* Centra el texto */
+    margin: 0; /* Elimina márgenes */
+}
+
+#edit-playlist-songs li button {
+    background-color: #ff0000; /* Color del botón */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#edit-playlist-songs li button:hover {
+    background-color: #555; /* Color de hover */
+}
+#edit-playlist-modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fijo en la pantalla */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el modal */
+    width: 400px; /* Ancho fijo */
+    height: 420px; /* Alto fijo */
+    background-color: white;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra del modal */
+    overflow: hidden; /* Evita que el contenido salga del modal */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+#edit-playlist-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegura que ocupe todo el espacio del modal */
+    overflow: hidden; /* Evita que los elementos internos se desborden */
+    padding: 15px; /* Espaciado interno */
+    box-sizing: border-box;
+}
+
+#edit-playlist-songs {
+    flex: 1; /* Permite que el contenido crezca para ocupar el espacio disponible */
+    overflow-y: auto; /* Activa el scroll vertical si el contenido excede el tamaño */
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Elimina los estilos de lista */
+    display: flex;
+    flex-direction: column; /* Coloca las canciones en columna */
+    gap: 10px; /* Espacio entre canciones */
+}
+
+#edit-playlist-songs li {
+    display: flex; /* Muestra las canciones en flexbox */
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra el contenido horizontalmente */
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#edit-playlist-modal .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}

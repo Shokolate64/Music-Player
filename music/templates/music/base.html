@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'music/styles.css' %}">
+    <title>Music Player</title>
+    {% csrf_token %}
+</head>
+<body>
+    <header>
+        <h1>Music Player</h1>
+        <nav>
+            <a href="/" class="nav-link" onclick="navigateTo(event, '/')">All Songs</a>
+            <a href="/upload/" class="nav-link" onclick="navigateTo(event, '/upload/')">Upload Song</a>
+            <a href="/playlists/" class="nav-link" onclick="navigateTo(event, '/playlists/')">Playlists</a>
+            <a href="/favorites/" class="nav-link" onclick="navigateTo(event, '/favorites/')">Favorites</a>
+        </nav>
+        
+    </header>
+    <main id="content">
+        {% block content %}{% endblock %}
+    </main>
+    <footer id="music-player">
+        <div id="player-info">
+            <img id="player-cover" src="{% static 'music/default_cover.png' %}" alt="Cover" width="50">
+            <div id="player">
+                <h4 id="player-title"></h4>
+                <p id="player-artist"></p>
+                <div id="bars">
+                  <input type="range" id="progress-bar" value="0" step="0.1">
+                  <input id="volume-slider" type="range" min="0" max="1" step="0.1" value="1">
+                </div>           
+            </div>
+        </div>
+        <div id="player-controls">
+            <button id="prev-btn">
+                <img src="{% static 'music/icons/prev.png' %}" alt="Previous">
+            </button>
+            <button id="play-pause-btn">
+                <img src="{% static 'music/icons/play.png' %}" alt="Play" id="play-pause-icon">
+            </button>
+            <button id="next-btn">
+                <img src="{% static 'music/icons/next.png' %}" alt="Next">
+            </button>
+            <button id="shuffle-btn">
+                <img src="{% static 'music/icons/shuffle_off.png' %}" alt="Shuffle">
+            </button>
+            <button id="loop-btn">
+                <img src="{% static 'music/icons/loop_off.png' %}" alt="Loop" id="loop-icon">
+            </button>
+            
+        </div>
+        <audio id="audio-player" src=""></audio>
+    </footer>
+    <!-- Popup Modal -->
+    <div id="playlist-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Select a Playlist</h2>
+            <ul id="playlist-list"></ul>
+        </div>
+    </div>
+    
+    <script src="{% static 'music/scripts.js' %}"></script>
+</body>
+</html>

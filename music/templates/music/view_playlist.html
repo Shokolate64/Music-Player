@@ -1,0 +1,16 @@
+<h1>{{ playlist.name }}</h1>
+<a href="#" onclick="navigateTo(event, '/playlists/')" id="playlist_link">Back to Playlists</a>
+
+<ul id="playlist-songs">
+    {% for song in playlist.songs.all %}
+        <li data-index="{{ forloop.counter0 }}">
+            <img src="{{ song.cover.url|default:'/static/music/default_cover.png' }}" alt="{{ song.title }}" class="cover-image">
+            <div class="text-container">
+                <h3>{{ song.title }}</h3>
+                <p>{{ song.artist }}</p>
+            </div>
+            <button class="play-btn" onclick="playSong('{{ song.audio_file.url }}', '{{ song.title }}', '{{ song.artist }}', '{{ song.cover.url|default:'/static/music/default_cover.png' }}')"></button>
+        </li>
+    {% endfor %}
+</ul>
+

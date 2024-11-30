@@ -1,0 +1,6 @@
+<h1>Upload Song</h1>
+<form id="upload-song-form" method="POST" action="{% url 'upload_song' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>

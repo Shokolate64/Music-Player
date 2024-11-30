@@ -1,0 +1,18 @@
+<h1>Favorites</h1>
+<ul id="favorites-list">
+    {% for song in songs %}
+        <li id="song-{{ song.id }}" data-index="{{ forloop.counter0 }}">
+            <img src="{{ song.cover.url|default:'/static/music/default_cover.png' }}" alt="{{ song.title }}" class="cover-image">
+            <div class="text-container">
+                <h3>{{ song.title }}</h3>
+                <p>{{ song.artist }}</p>
+            </div>
+            <button onclick="toggleFavorite({{ song.id }})">
+                <span class="favorite-icon remove"></span>
+            </button>
+            
+            
+            <button class="play-btn" onclick="playSong('{{ song.audio_file.url }}', '{{ song.title }}', '{{ song.artist }}', '{{ song.cover.url|default:'/static/music/default_cover.png' }}')"></button>
+        </li>
+    {% endfor %}
+</ul>
